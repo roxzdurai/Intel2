@@ -135,8 +135,8 @@ const Candidates: React.FC = () => {
               <div className="mt-4">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-2">
-                    {getFileIcon(file.name)} {/* Use the function to get the icon */}
-                    <span>{file.name}</span>
+                    {getFileIcon(file?.name || "")} {/* Use the function with a fallback */}
+                    <span>{file?.name || "No file selected"}</span>
                   </div>
                   <span>{((file.size || 0) / (1024 * 1024)).toFixed(2)} MB</span>
                 </div>
@@ -178,9 +178,9 @@ const Candidates: React.FC = () => {
             {uploadProgress === 100 && (
               <div className="mt-4 border border-gray-300 rounded-lg p-3 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  {getFileIcon(file?.name)} {/* Use the function to get the icon */}
+                  {getFileIcon(file?.name || "")} {/* Use the function with a fallback */}
                   <div>
-                    <p className="font-semibold text-gray-800">{file?.name}</p>
+                    <p className="font-semibold text-gray-800">{file?.name || "No file selected"}</p>
                     <p className="text-sm text-gray-500">
                       {((file?.size || 0) / (1024 * 1024)).toFixed(2)} MB
                     </p>
