@@ -15,30 +15,46 @@ const JobPosting: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'create' | 'posted'>('create');
   const [jobTitle, setJobTitle] = useState('');
   const [jobDescription, setJobDescription] = useState('');
-  const [skillInput, setSkillInput] = useState('');
   const [skills, setSkills] = useState<string[]>([]);
   const [location, setLocation] = useState('Work from office');
   const [salaryRange, setSalaryRange] = useState('3 - 4 LPA');
   const [postedJobs, setPostedJobs] = useState<Job[]>([]);
 
-  // Handle enter key press for adding skills
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && skillInput.trim() !== '') {
-      e.preventDefault(); // Prevent form submission on Enter key
-      if (!skills.includes(skillInput.trim())) {
-        setSkills([...skills, skillInput.trim()]); // Add skill to the list
-      }
-      setSkillInput(''); // Clear the input after adding the skill
+  // Predefined skills list for the dropdown
+  const predefinedSkills = [
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'React',
+    'Node.js',
+    'Python',
+    'Java',
+    'C++',
+    'SQL',
+    'AWS',
+    'Docker',
+    'Kubernetes',
+    'DevOps',
+    'Git',
+    'TypeScript',
+    
+  ];
+
+  // Handle skill selection from dropdown
+  const handleSkillSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedSkill = e.target.value;
+    if (selectedSkill && !skills.includes(selectedSkill)) {
+      setSkills([...skills, selectedSkill]); // Add the skill to the list
     }
   };
 
-  // Remove a skill
+  // Remove a skill from the list
   const removeSkill = (index: number) => {
     const updatedSkills = skills.filter((_, i) => i !== index);
     setSkills(updatedSkills);
   };
 
-  // Handle form submission and add new job to postedJobs array
+  // Handle form submission to add a new job
   const handlePostJob = () => {
     if (jobTitle && jobDescription) {
       const newJob: Job = {
@@ -47,19 +63,19 @@ const JobPosting: React.FC = () => {
         skills,
         location,
         salaryRange,
-        datePosted: new Date().toLocaleDateString(), // Use current date for the job post
+        datePosted: new Date().toLocaleDateString(),
         applicants: Math.floor(Math.random() * 100) + 1, // Random applicants for demo purposes
       };
-      setPostedJobs([...postedJobs, newJob]); // Add the new job to the list of posted jobs
-      setActiveTab('posted'); // Switch to Posted tab
-      resetForm(); // Clear form inputs
+      setPostedJobs([...postedJobs, newJob]);
+      setActiveTab('posted');
+      resetForm(); // Clear the form after posting
     }
   };
 
+  // Reset form fields
   const resetForm = () => {
     setJobTitle('');
     setJobDescription('');
-    setSkillInput('');
     setSkills([]);
     setLocation('Work from office');
     setSalaryRange('3 - 4 LPA');
@@ -67,10 +83,8 @@ const JobPosting: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white p-4">
-      {/* Header with JOBS title */}
       <div className="mb-4">
         <h1 className="text-3xl font-bold text-gray-800">JOBS</h1>
-        {/* Create and Posted buttons under the title */}
         <div className="flex items-center mt-2">
           <button
             onClick={() => setActiveTab('create')}
@@ -91,12 +105,9 @@ const JobPosting: React.FC = () => {
         </div>
       </div>
 
-      {/* Conditional rendering based on the selected tab */}
       {activeTab === 'create' ? (
         <div className="max-w-full" style={{ textAlign: 'left' }}>
-          {/* Form aligned to the left */}
           <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-            {/* Job Role / Title */}
             <div className="text-left">
               <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-600">
                 Job Role / Title
@@ -113,7 +124,6 @@ const JobPosting: React.FC = () => {
               </select>
             </div>
 
-            {/* Job Description */}
             <div className="text-left">
               <label htmlFor="jobDescription" className="block text-sm font-medium text-gray-600">
                 Job Description
@@ -128,20 +138,28 @@ const JobPosting: React.FC = () => {
               />
             </div>
 
-            {/* Requirements / Skills */}
+            {/* Skills Dropdown */}
             <div className="text-left">
               <label htmlFor="requirements" className="block text-sm font-medium text-gray-600">
                 Requirements
               </label>
-              <input
+              <select
                 id="requirements"
-                type="text"
-                value={skillInput}
-                onChange={(e) => setSkillInput(e.target.value)}
-                onKeyDown={handleKeyDown}
+                value=""
+                onChange={handleSkillSelect}
                 className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-orange-500 focus:border-orange-500"
-                placeholder="Enter requirements and press Enter (e.g., HTML, CSS)"
-              />
+              >
+                <option value="" disabled>
+                  Select skills
+                </option>
+                {predefinedSkills.map((skill, index) => (
+                  <option key={index} value={skill}>
+                    {skill}
+                  </option>
+                ))}
+              </select>
+
+              {/* Render selected skills */}
               <div className="flex gap-2 mt-2 flex-wrap">
                 {skills.map((skill, index) => (
                   <span
@@ -161,7 +179,6 @@ const JobPosting: React.FC = () => {
               </div>
             </div>
 
-            {/* Location */}
             <div className="text-left">
               <label htmlFor="location" className="block text-sm font-medium text-gray-600">
                 Location
@@ -177,7 +194,6 @@ const JobPosting: React.FC = () => {
               </select>
             </div>
 
-            {/* Salary Range */}
             <div className="text-left">
               <label htmlFor="salaryRange" className="block text-sm font-medium text-gray-600">
                 Salary Range
@@ -190,10 +206,10 @@ const JobPosting: React.FC = () => {
               >
                 <option value="3 - 4 LPA">3 - 4 LPA</option>
                 <option value="4 - 5 LPA">4 - 5 LPA</option>
+                <option value="More than 5 LPA"> More than 5 LPA</option>
               </select>
             </div>
 
-            {/* Buttons */}
             <div className="flex gap-4 mt-6">
               <button
                 type="button"
@@ -217,23 +233,21 @@ const JobPosting: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {postedJobs.map((job, index) => (
               <div key={index} className="border border-gray-300 p-4 rounded-md shadow-md">
-                <h3 className="text-xl font-semibold text-gray-800">{job.jobTitle}</h3>
-                <p className="text-sm text-gray-600 mt-1">{job.datePosted}</p>
-                <p className="text-gray-700 mt-2">{job.jobDescription}</p>
-                <div className="mt-4">
-                  <h4 className="text-sm font-medium text-gray-600">Requirements</h4>
-                  <ul className="list-disc list-inside mt-1">
-                    {job.skills.map((skill, i) => (
-                      <li key={i} className="text-gray-700 text-sm">
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{job.jobTitle}</h3>
+                <p className="text-gray-600 mb-2">{job.jobDescription}</p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {job.skills.map((skill, skillIndex) => (
+                    <span
+                      key={skillIndex}
+                      className="px-2 py-1 bg-orange-100 text-orange-800 rounded-md text-sm"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-                <div className="flex justify-between mt-4">
-                  <span className="text-gray-600 text-sm">{job.location}</span>
-                  <span className="text-gray-600 text-sm">Applicants: {job.applicants}</span>
-                </div>
+                <p className="text-gray-500 text-sm mb-1">Location: {job.location}</p>
+                <p className="text-gray-500 text-sm mb-1">Salary: {job.salaryRange}</p>
+                <p className="text-gray-400 text-sm">Posted on: {job.datePosted}</p>
               </div>
             ))}
           </div>
