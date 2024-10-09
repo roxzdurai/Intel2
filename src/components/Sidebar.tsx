@@ -12,6 +12,11 @@ const Sidebar: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
+  // Close the sidebar
+  const closeSidebar = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative">
       {/* Hamburger menu icon for mobile */}
@@ -44,6 +49,7 @@ const Sidebar: React.FC = () => {
                     : 'text-gray-700 hover:bg-gray-200'
                 }`
               }
+              onClick={closeSidebar} // Close sidebar on link click
             >
               <Home className="mr-2 h-5 w-5" /> Dashboard
             </NavLink>
@@ -57,6 +63,7 @@ const Sidebar: React.FC = () => {
                     : 'text-gray-700 hover:bg-gray-200'
                 }`
               }
+              onClick={closeSidebar} // Close sidebar on link click
             >
               <Users className="mr-2 h-5 w-5" /> Candidates
             </NavLink>
@@ -70,6 +77,7 @@ const Sidebar: React.FC = () => {
                     : 'text-gray-700 hover:bg-gray-200'
                 }`
               }
+              onClick={closeSidebar} // Close sidebar on link click
             >
               <Briefcase className="mr-2 h-5 w-5" /> Jobs
             </NavLink>
@@ -83,6 +91,7 @@ const Sidebar: React.FC = () => {
                     : 'text-gray-700 hover:bg-gray-200'
                 }`
               }
+              onClick={closeSidebar} // Close sidebar on link click
             >
               <LayoutDashboard className="mr-2 h-5 w-5" /> Psychometrics
             </NavLink>
@@ -100,6 +109,7 @@ const Sidebar: React.FC = () => {
                   : 'text-gray-700 hover:bg-gray-200'
               }`
             }
+            onClick={closeSidebar} // Close sidebar on link click
           >
             <Settings className="mr-2 h-5 w-5" /> Settings
           </NavLink>
@@ -113,6 +123,7 @@ const Sidebar: React.FC = () => {
                   : 'text-gray-700 hover:bg-gray-200'
               }`
             }
+            onClick={closeSidebar} // Close sidebar on link click
           >
             <User className="mr-2 h-5 w-5" /> User Account
           </NavLink>
@@ -123,7 +134,7 @@ const Sidebar: React.FC = () => {
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-0 md:hidden"
-          onClick={toggleSidebar}
+          onClick={closeSidebar} // Close sidebar on overlay click
         ></div>
       )}
     </div>
