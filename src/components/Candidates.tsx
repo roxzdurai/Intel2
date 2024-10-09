@@ -81,8 +81,8 @@ const Candidates: React.FC = () => {
   };
 
   return (
-    <div className="p-6 flex justify-start items-start">
-      <div className="w-1/3">
+    <div className="p-6 flex flex-col md:flex-row justify-start items-start">
+      <div className="w-full md:w-1/3">
         <div className="flex flex-col items-start">
           <h1 className="text-xl font-bold mb-2">CANDIDATES</h1>
           <div className="flex space-x-6">
@@ -101,7 +101,7 @@ const Candidates: React.FC = () => {
         </div>
 
         {showUpload && (
-          <div className="mt-6">
+          <div className="mt-6 w-full">
             <h2 className="text-lg font-semibold">Resume Or CV Upload</h2>
             <p className="text-sm text-gray-500">
               Add your documents here, and you can upload up to 5 files max
@@ -132,11 +132,11 @@ const Candidates: React.FC = () => {
             </p>
 
             {file && uploadProgress < 100 && (
-              <div className="mt-4">
+              <div className="mt-4 w-full">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-2">
                     {getFileIcon(file?.name || "")} {/* Use the function with a fallback */}
-                    <span>{file?.name || "No file selected"}</span>
+                    <span className="truncate max-w-xs md:max-w-full">{file?.name || "No file selected"}</span>
                   </div>
                   <span>{((file.size || 0) / (1024 * 1024)).toFixed(2)} MB</span>
                 </div>
