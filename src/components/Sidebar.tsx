@@ -12,8 +12,8 @@ const Sidebar: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  // Close the sidebar
-  const closeSidebar = () => {
+  // Close sidebar when clicking a link on mobile
+  const closeSidebarOnClick = () => {
     setIsOpen(false);
   };
 
@@ -43,13 +43,13 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `flex items-center p-2 rounded-md ${
+                `flex items-center p-4 rounded-lg border-2 font-inter ${
                   isActive
-                    ? 'bg-orange-100 text-orange-500'
-                    : 'text-gray-700 hover:bg-gray-200'
-                }`
+                    ? 'bg-[#FFF6ED] text-[#393939] border-t-[2px] border-b-[6px] border-[#FD8809]' // Custom background and border for active state
+                    : 'text-[#393939] border-transparent hover:bg-gray-100 border-t-[2px] border-b-[6px] border-transparent' // Normal state
+                } transition-all duration-300`
               }
-              onClick={closeSidebar} // Close sidebar on link click
+              onClick={closeSidebarOnClick} // Close sidebar on page click
             >
               <Home className="mr-2 h-5 w-5" /> Dashboard
             </NavLink>
@@ -57,13 +57,13 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/candidates"
               className={({ isActive }) =>
-                `flex items-center p-2 rounded-md ${
+                `flex items-center p-4 rounded-lg border-2 font-inter ${
                   isActive
-                    ? 'bg-orange-100 text-orange-500'
-                    : 'text-gray-700 hover:bg-gray-200'
-                }`
+                    ? 'bg-[#FFF6ED] text-[#393939] border-t-[2px] border-b-[6px] border-[#FD8809]' // Custom background and border for active state
+                    : 'text-[#393939] border-transparent hover:bg-gray-100 border-t-[2px] border-b-[6px] border-transparent' // Normal state
+                } transition-all duration-300`
               }
-              onClick={closeSidebar} // Close sidebar on link click
+              onClick={closeSidebarOnClick} // Close sidebar on page click
             >
               <Users className="mr-2 h-5 w-5" /> Candidates
             </NavLink>
@@ -71,13 +71,13 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/jobs"
               className={({ isActive }) =>
-                `flex items-center p-2 rounded-md ${
+                `flex items-center p-4 rounded-lg border-2 font-inter ${
                   isActive
-                    ? 'bg-orange-100 text-orange-500'
-                    : 'text-gray-700 hover:bg-gray-200'
-                }`
+                    ? 'bg-[#FFF6ED] text-[#393939] border-t-[2px] border-b-[6px] border-[#FD8809]' // Custom background and border for active state
+                    : 'text-[#393939] border-transparent hover:bg-gray-100 border-t-[2px] border-b-[6px] border-transparent' // Normal state
+                } transition-all duration-300`
               }
-              onClick={closeSidebar} // Close sidebar on link click
+              onClick={closeSidebarOnClick} // Close sidebar on page click
             >
               <Briefcase className="mr-2 h-5 w-5" /> Jobs
             </NavLink>
@@ -85,13 +85,13 @@ const Sidebar: React.FC = () => {
             <NavLink
               to="/psychometrics"
               className={({ isActive }) =>
-                `flex items-center p-2 rounded-md ${
+                `flex items-center p-4 rounded-lg border-2 font-inter ${
                   isActive
-                    ? 'bg-orange-100 text-orange-500'
-                    : 'text-gray-700 hover:bg-gray-200'
-                }`
+                    ? 'bg-[#FFF6ED] text-[#393939] border-t-[2px] border-b-[6px] border-[#FD8809]' // Custom background and border for active state
+                    : 'text-[#393939] border-transparent hover:bg-gray-100 border-t-[2px] border-b-[6px] border-transparent' // Normal state
+                } transition-all duration-300`
               }
-              onClick={closeSidebar} // Close sidebar on link click
+              onClick={closeSidebarOnClick} // Close sidebar on page click
             >
               <LayoutDashboard className="mr-2 h-5 w-5" /> Psychometrics
             </NavLink>
@@ -103,13 +103,13 @@ const Sidebar: React.FC = () => {
           <NavLink
             to="/settings"
             className={({ isActive }) =>
-              `flex items-center p-2 rounded-md ${
+              `flex items-center p-4 rounded-lg border-2 font-inter ${
                 isActive
-                  ? 'bg-gray-100 text-gray-700'
-                  : 'text-gray-700 hover:bg-gray-200'
-              }`
+                  ? 'bg-[#FFF6ED] text-[#393939] border-t-[2px] border-b-[6px] border-[#FD8809]' // Custom background and border for active state
+                  : 'text-[#393939] border-transparent hover:bg-gray-100 border-t-[2px] border-b-[6px] border-transparent' // Normal state
+              } transition-all duration-300`
             }
-            onClick={closeSidebar} // Close sidebar on link click
+            onClick={closeSidebarOnClick} // Close sidebar on page click
           >
             <Settings className="mr-2 h-5 w-5" /> Settings
           </NavLink>
@@ -117,13 +117,13 @@ const Sidebar: React.FC = () => {
           <NavLink
             to="/user-account"
             className={({ isActive }) =>
-              `flex items-center p-2 rounded-md ${
+              `flex items-center p-4 rounded-lg border-2 font-inter ${
                 isActive
-                  ? 'bg-gray-100 text-gray-700'
-                  : 'text-gray-700 hover:bg-gray-200'
-              }`
+                  ? 'bg-[#FFF6ED] text-[#393939] border-t-[2px] border-b-[6px] border-[#FD8809]' // Custom background and border for active state
+                  : 'text-[#393939] border-transparent hover:bg-gray-100 border-t-[2px] border-b-[6px] border-transparent' // Normal state
+              } transition-all duration-300`
             }
-            onClick={closeSidebar} // Close sidebar on link click
+            onClick={closeSidebarOnClick} // Close sidebar on page click
           >
             <User className="mr-2 h-5 w-5" /> User Account
           </NavLink>
@@ -134,7 +134,7 @@ const Sidebar: React.FC = () => {
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-0 md:hidden"
-          onClick={closeSidebar} // Close sidebar on overlay click
+          onClick={toggleSidebar} // Close sidebar when clicking outside
         ></div>
       )}
     </div>
