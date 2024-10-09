@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
           placeholder="Search Keyword"
           className="bg-transparent w-full focus:outline-none text-gray-700 placeholder-gray-500"
         />
-        <span className="text-gray-500"></span>
+        <span className="text-gray-500">/</span>
       </form>
 
       {/* Right Icons */}
