@@ -1,8 +1,15 @@
-  import React from "react";
+import React from "react";
 
-  const Dashboard = () => {
-    return (
-      <div className="p-6 space-y-6">
+const Dashboard = () => {
+  return (
+    <div className="flex">
+      {/* Sidebar Fixed to the left */}
+      <div className="fixed left-0 top-0 w-64 h-screen bg-white shadow-md">
+        {/* Sidebar content can go here if needed */}
+      </div>
+
+      {/* Dashboard Content */}
+      <div className="flex-grow p-6 ml-64 space-y-6 overflow-y-scroll h-screen"> {/* Added overflow-y-scroll to ensure the scrollbar is always visible */}
         {/* Header Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white shadow-md p-4 rounded-lg">
@@ -112,7 +119,8 @@
           </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default Dashboard;
+export default Dashboard;
