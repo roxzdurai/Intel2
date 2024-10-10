@@ -1,7 +1,9 @@
-
 const Dashboard = () => {
   return (
-    <div className="p-6 space-y-6">
+    <div className="h-screen p-6 space-y-6 overflow-y-auto custom-scrollbar">  {/* Added custom-scrollbar class */}
+      {/* DASHBOARD Header */}
+      <h1 className="text-2xl font-bold text-gray-800">DASHBOARD</h1>  {/* Added text for DASHBOARD */}
+
       {/* Header Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white shadow-md p-4 rounded-lg">
@@ -59,14 +61,12 @@ const Dashboard = () => {
         <div className="bg-white shadow-md p-6 rounded-lg">
           <h2 className="text-lg font-semibold">Top Applications</h2>
           <ul className="mt-4 space-y-2">
-            {/* Example Entries */}
-            {[
-              { name: "Sohaib Muhammad", email: "sobaib_muh@gmail.com", location: "Pak", stack: "Full Stack", percentage: "94%" },
+            {[{ name: "Sohaib Muhammad", email: "sobaib_muh@gmail.com", location: "Pak", stack: "Full Stack", percentage: "94%" },
               { name: "Amer Ahmed", email: "amer_ahmed@gmail.com", location: "Pak", stack: "Full Stack", percentage: "88%" },
               { name: "Sheik Anas", email: "sheik_2024@gmail.com", location: "Egy", stack: "Full Stack", percentage: "86%" },
               { name: "Hazin Zaf Amir", email: "hazinzafo101@gmail.com", location: "Ban", stack: "Full Stack", percentage: "78%" },
-              { name: "Nafissa Begum", email: "nafissa94@gmail.com", location: "Ind", stack: "Full Stack", percentage: "67%" },
-            ].map((applicant, index) => (
+              { name: "Nafissa Begum", email: "nafissa94@gmail.com", location: "Ind", stack: "Full Stack", percentage: "67%" }]
+              .map((applicant, index) => (
               <li key={index} className="flex justify-between items-center">
                 <div className="flex flex-col">
                   <span className="font-semibold">{applicant.name}</span>
@@ -86,16 +86,14 @@ const Dashboard = () => {
         <div className="bg-white shadow-md p-6 rounded-lg">
           <h2 className="text-lg font-semibold">Applications Tracker</h2>
           <ul className="mt-4 space-y-2">
-            {/* Example Progress Bars */}
-            {[
-              { month: "Jan", value: 23400 },
+            {[{ month: "Jan", value: 23400 },
               { month: "Feb", value: 15000 },
               { month: "Mar", value: 30000 },
               { month: "Apr", value: 22000 },
               { month: "May", value: 10000 },
               { month: "Jun", value: 23400 },
-              { month: "Jul", value: 5000 },
-            ].map((tracker, index) => (
+              { month: "Jul", value: 5000 }]
+              .map((tracker, index) => (
               <li key={index}>
                 <p className="text-gray-600">{tracker.month}</p>
                 <div className="w-full bg-gray-200 h-2 rounded-lg mt-1">
