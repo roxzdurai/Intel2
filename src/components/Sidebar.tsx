@@ -39,8 +39,7 @@ const Sidebar: React.FC = () => {
             <img src={Logo} alt="IntelliRecruit Logo" className="h-10 w-auto" />
           </div>
 
-          {/* Reduced the spacing between navigation items (space-y-4 to space-y-2) */}
-          <nav className="flex flex-col space-y-2 px-4 mt-4">
+          <nav className="flex flex-col space-y-4 px-4 mt-4">
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -100,7 +99,7 @@ const Sidebar: React.FC = () => {
         </div>
 
         {/* Bottom Section: Settings and User Account */}
-        <div className="flex flex-col p-4 space-y-2">
+        <div className="flex flex-col p-4 space-y-4">
           <NavLink
             to="/settings"
             className={({ isActive }) =>
